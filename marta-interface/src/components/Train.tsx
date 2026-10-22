@@ -2,7 +2,7 @@ type TrainProps = {
     destination: string
     station: string
     waitingTime: string
-    delay: string
+    delay?: string
 }
 
 export default function Train(props: TrainProps) {

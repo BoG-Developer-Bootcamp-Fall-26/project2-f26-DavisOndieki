@@ -1,10 +1,26 @@
 import Train from './Train'
 
+export type TrainData = {
+    TRAIN_ID: string
+    LINE: string
+    DESTINATION: string
+    STATION: string
+    WAITING_TIME: string
+    DIRECTION: string
+    DELAY?: string
+}
+
 type TrainListProps = {
     color: string
+    data: TrainData[]
+
 }
 
 export default function TrainList(props: TrainListProps) {
+
+
+
+    /* Dummy Data
     const trains = [
         {
             id: '1',
@@ -19,7 +35,7 @@ export default function TrainList(props: TrainListProps) {
             line: 'gold',
             destination: 'Airport',
             station: 'NORTH AVENUE STATION',
-            waitngTime: '8 min',
+            waitingTime: '8 min',
             delay: 'T30S'
         },
         {
@@ -27,30 +43,33 @@ export default function TrainList(props: TrainListProps) {
             line: 'red',
             destination: 'North Springs',
             station: 'MIDTOWN STATION',
-            waitngTime: '3 min',
+            waitingTime: '3 min',
             delay: 'T0S'
         }
     ]
+    */    
 
-        const filteredTrains = trains.filter(function(train) {
-            return train.line === props.color
+        const filteredTrains = props.data.filter(function(train) {
+            return train.LINE === props.color.toUpperCase()
+
         })
-
+        if (filteredTrains.length === 0) {
+            return <p>No current trains match your filters.</p>
+        } 
         return (
             <div>
-                {filteredTrains.map(function(train) {
+                {filteredTrains.map(function(train, index) {
                     return (
                         <Train
-                            key={train.id}
-                            destination={train.destination}
-                            station={train.station}
-                            waitingTime={train.waitingTime}
-                            delay={train.delay}
+                            key={index}
+                            destination={train.DESTINATION}
+                            station={train.STATION}
+                            waitingTime={train.WAITING_TIME}
+                            delay={train.DELAY}
 
                         />
                     )    
                 })}
             </div>
         )
-
-}
+}    

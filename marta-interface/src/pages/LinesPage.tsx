@@ -1,9 +1,57 @@
-import { useState } from 'react'
-import Train from '../components/Train'
+import { useEffect, useState } from 'react'
+import TrainList from '../components/TrainList'
+import type { TrainData } from '../components/TrainList'
 
 
 export default function LinesPage() {
     const [currColor, setCurrColor] = useState('gold');
+
+    const [data, setData] = useState<TrainData[] | null>(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
+
+    useEffect(function() {
+        // Ignore an old request if the user switches lines.
+        let cancelled = false
+
+        setLoading(true)
+        setError('')
+        setData(null)
+
+        fetch('https://marta-bootcamp-api.vercel.app/arrivals/' + currColor)
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Could not load trains.')
+                }
+
+                return response.json()
+            })
+            .then(function(trainData) {
+                if (!cancelled) {
+                    setData(trainData)
+                    setLoading(false)
+                }
+            })
+            .catch(function() {
+                if (!cancelled) {
+                    setError('Could not load trains. Please try again later.')
+                    setLoading(false)
+                }
+            })
+
+        return function() {
+            cancelled = true
+        }
+    }, [currColor])
+
+    
+
+
+
+
+
+
+
 
     function selectGold() {
         setCurrColor('gold');
@@ -21,6 +69,13 @@ export default function LinesPage() {
         setCurrColor('blue');
     }
 
+    let trainContent = <p>Loading trains...</p>
+    if (error !== '') {
+        trainContent = <p>{error}</p>
+    } else if (loading === false && data !== null) {
+        trainContent = <TrainList color = {currColor} data={data} />
+    }
+
     return (
         <div>
             <h1>MARTA Train Tracker</h1>
@@ -30,12 +85,8 @@ export default function LinesPage() {
             <button onClick={selectBlue}>Blue</button>
 
             <h2>Current line: {currColor}</h2>
-            <Train
-                destination="Doraville"
-                station="MIDTOWN STATION"
-                waitingTime="5 min"
-                delay="T0S"
-            />
+            {trainContent}
+            
 
         </div>
     )
