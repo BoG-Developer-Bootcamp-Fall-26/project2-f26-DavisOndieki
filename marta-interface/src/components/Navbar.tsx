@@ -9,10 +9,22 @@ export default function Navbar(props: NavbarProps) {
         props.onSelectStation('')
     }
 
+    let allStationsClass = 'station-button'
+
+    if (props.selectedStation === '') {
+        allStationsClass = 'station-button selected'
+    }
+
     return (
-        <nav>
+        <nav className="station-sidebar">
+            <p className="eyebrow">YOUR STOP</p>
             <h2>Stations</h2>
-            <button onClick={selectAllStations}>
+
+            <button
+                className={allStationsClass}
+                onClick={selectAllStations}
+                aria-pressed={props.selectedStation === ''}
+            >
                 All Stations
             </button>
 
@@ -21,23 +33,20 @@ export default function Navbar(props: NavbarProps) {
                     props.onSelectStation(station)
                 }
 
-                let backgroundColor = 'white'
+                let buttonClass = 'station-button'
+
                 if (props.selectedStation === station) {
-                    backgroundColor = 'gold'
+                    buttonClass = 'station-button selected'
                 }
 
                 return (
                     <button
                         key={station}
+                        className={buttonClass}
                         onClick={selectStation}
-                        style={{
-                            backgroundColor: backgroundColor,
-                            color: 'black',
-                            padding: '8px',
-                            margin: '4px',
-                            border: '1px solid black'
-                        }}
+                        aria-pressed={props.selectedStation === station}
                     >
+                        <span className="station-dot" aria-hidden="true" />
                         {station}
                     </button>
                 )

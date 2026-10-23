@@ -6,8 +6,8 @@
 
 :root {
     font-family: Arial, Helvetica, sans-serif;
-    color: #182433;
-    background-color: #f3f5f7;
+    color: #172433;
+    background: #f5f6f7;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -18,230 +18,645 @@ body {
 }
 
 #root {
-    width: 100%;
     min-height: 100vh;
 }
 
-header {
-    background-color: #142536;
-    color: white;
-    padding: 28px;
-    text-align: center;
-    border-bottom: 6px solid #e5ae32;
-}
-
-h1 {
-    font-size: 32px;
-    font-weight: bold;
-    margin: 0 0 16px;
-}
-
-h2 {
-    font-size: 22px;
-    font-weight: bold;
-    margin: 24px 0 16px;
-}
-
-p {
-    line-height: 1.6;
-    margin: 8px 0;
-}
-
+button,
 a {
-    color: #135f9d;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-header a {
-    color: white;
-    display: inline-block;
-    padding: 8px;
-}
-
-a:hover {
-    text-decoration-thickness: 2px;
-}
-
-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 32px 24px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button {
     font: inherit;
-    background-color: white;
-    color: #182433;
-    border: 1px solid #c4cdd6;
-    border-radius: 8px;
-    padding: 10px 18px;
-    margin: 4px;
     cursor: pointer;
-    transition: box-shadow 0.15s;
 }
 
-button:hover {
-    box-shadow: 0 3px 8px #00000020;
+a {
+    color: inherit;
+    text-underline-offset: 4px;
 }
 
 button:focus-visible,
 a:focus-visible {
-    outline: 3px solid #2081c3;
-    outline-offset: 3px;
+    outline: 3px solid #1675c5;
+    outline-offset: 4px;
 }
 
-button[aria-pressed="true"] {
-    font-weight: bold;
-    box-shadow: inset 0 0 0 2px #135f9d;
-}
-
-/* Line selection buttons */
-main > div:first-child > button {
-    border: none;
-    font-weight: bold;
-    min-width: 100px;
-}
-
-main > div:first-child > button:nth-child(1) {
-    background-color: #efbd42;
-    color: #182433;
-}
-
-main > div:first-child > button:nth-child(2) {
-    background-color: #bc293a;
-    color: white;
-}
-
-main > div:first-child > button:nth-child(3) {
-    background-color: #217348;
-    color: white;
-}
-
-main > div:first-child > button:nth-child(4) {
-    background-color: #1664a5;
-    color: white;
-}
-
-main > nav {
-    background-color: white;
-    padding: 20px;
-    margin: 24px 0;
-    border: 1px solid #dce2e8;
-    border-radius: 12px;
-}
-
-main > nav h2 {
-    margin-top: 0;
-}
-
-main > nav button {
-    font-size: 14px;
-}
-
-main > div:last-child {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 18px;
-    margin-top: 24px;
-}
-
-main > div:last-child > div {
-    background-color: white;
-    border: 1px solid #dce2e8;
-    border-top: 5px solid #e5ae32;
-    border-radius: 12px;
-    padding: 22px;
-}
-
-main > div:last-child > div h2 {
-    font-size: 20px;
-    margin: 0 0 16px;
-}
-
-main > div:last-child > div p {
-    font-size: 15px;
-    color: #475569;
-}
-
-.line-links {
+header {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    gap: 12px;
-    margin-top: 32px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 24px max(24px, calc((100vw - 1200px) / 2));
+    background: white;
+    border-bottom: 1px solid #dde2e6;
 }
 
-.line-links a {
-    padding: 24px;
-    min-width: 150px;
-    border-radius: 10px;
-    font-weight: bold;
-    text-align: center;
+header h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+header a {
+    font-size: 14px;
+    font-weight: 600;
     text-decoration: none;
 }
 
-.line-links a:nth-of-type(1) {
-    background-color: #efbd42;
-    color: #182433;
+header a:hover {
+    text-decoration: underline;
 }
 
-.line-links a:nth-of-type(2) {
-    background-color: #bc293a;
+.brand-dot {
+    color: #dba72a;
+}
+
+main {
+    max-width: 1248px;
+    margin: 0 auto;
+    padding: 32px 24px;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    color: #697785;
+}
+
+/* Train page: sidebar on the left, results on the right */
+main:has(.station-sidebar) {
+    display: grid;
+    grid-template-columns: 235px minmax(0, 1fr);
+    column-gap: 32px;
+    align-items: start;
+}
+
+main:has(.station-sidebar) > div:first-child {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+main:has(.station-sidebar) > div:first-child button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: transform 0.15s;
+}
+
+main:has(.station-sidebar) > div:first-child button:hover {
+    transform: translateY(-2px);
+}
+
+main:has(.station-sidebar) > div:first-child button:nth-child(1) {
+    background: #e8b63c;
+    color: #172433;
+}
+
+main:has(.station-sidebar) > div:first-child button:nth-child(2) {
+    background: #b92c3d;
     color: white;
 }
 
-.line-links a:nth-of-type(3) {
-    background-color: #217348;
+main:has(.station-sidebar) > div:first-child button:nth-child(3) {
+    background: #247249;
     color: white;
 }
 
-.line-links a:nth-of-type(4) {
-    background-color: #1664a5;
+main:has(.station-sidebar) > div:first-child button:nth-child(4) {
+    background: #1664a7;
     color: white;
 }
 
-object {
-    display: block;
-    background-color: white;
-    border: 1px solid #dce2e8;
+main:has(.station-sidebar) > h2 {
+    grid-column: 2;
+    margin: 0 0 18px;
+    font-size: 28px;
+    text-transform: capitalize;
+    letter-spacing: -0.8px;
+}
+
+/* Station navigation */
+.station-sidebar {
+    grid-column: 1;
+    grid-row: 2 / span 4;
+    background: white;
+    border: 1px solid #e0e5e9;
+    border-radius: 12px;
+    padding: 20px 12px;
+}
+
+.station-sidebar > .eyebrow,
+.station-sidebar > h2 {
+    padding-left: 10px;
+}
+
+.station-sidebar h2 {
+    margin: 0 0 20px;
+    font-size: 20px;
+}
+
+.station-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 11px 10px;
+    margin: 2px 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #566473;
+    text-align: left;
+    font-size: 13px;
+}
+
+.station-button:hover {
+    background: #f2f5f7;
+}
+
+.station-button.selected {
+    background: #172d40;
+    color: white;
+    font-weight: 700;
+}
+
+.station-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+}
+
+/* Station error message */
+main:has(.station-sidebar) > p {
+    grid-column: 2;
+    color: #b92c3d;
+    margin: 0;
+}
+
+main:has(.station-sidebar) > p:empty {
+    display: none;
+}
+
+/* Filter row */
+.station-sidebar ~ div {
+    grid-column: 2;
+}
+
+.station-sidebar ~ div:has(> button) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.station-sidebar ~ div > button {
+    border-radius: 6px;
+    font-size: 13px;
+    min-height: 40px;
+}
+
+button[aria-pressed="true"]:not(.station-button) {
+    font-weight: 700;
+    box-shadow: inset 0 0 0 1px #172d40;
+}
+
+/* Train cards */
+.train-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: white;
+    border: 1px solid #e0e5e9;
     border-radius: 10px;
-    margin-top: 20px;
+    padding: 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-/* Smaller screens */
-@media (max-width: 600px) {
+.train-card:hover {
+    border-color: #b5c2cd;
+    box-shadow: 0 4px 16px #17243308;
+}
+
+.train-symbol {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: #edf2f5;
+    color: #172d40;
+    border-radius: 10px;
+    font-size: 28px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.train-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.train-details .eyebrow,
+.train-arrival .eyebrow {
+    margin-bottom: 4px;
+    font-size: 9px;
+}
+
+.train-details h2 {
+    margin: 0;
+    font-size: 21px;
+    letter-spacing: -0.5px;
+}
+
+.train-station {
+    margin: 5px 0 10px;
+    color: #697785;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.train-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.on-time {
+    color: #216644;
+    background: #eaf5ee;
+}
+
+.delayed {
+    color: #98631b;
+    background: #fff3db;
+}
+
+.unavailable {
+    color: #647180;
+    background: #f0f2f4;
+}
+
+.train-arrival {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.train-arrival strong {
+    font-size: 21px;
+    letter-spacing: -0.5px;
+}
+
+/* Home */
+.home-hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 48px;
+    padding: 54px 0 64px;
+}
+
+.home-hero h2 {
+    margin: 18px 0;
+    font-size: clamp(42px, 5.5vw, 70px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+}
+
+.hero-description {
+    max-width: 350px;
+    color: #697785;
+    font-size: 17px;
+}
+
+.hero-link {
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.route-art {
+    position: relative;
+    height: 330px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #142b3e;
+}
+
+.track {
+    position: absolute;
+    border-radius: 30px;
+}
+
+.track-gold {
+    width: 15px;
+    height: 380px;
+    background: #e8b63c;
+    left: 44%;
+    top: -25px;
+    transform: rotate(32deg);
+}
+
+.track-red {
+    width: 15px;
+    height: 380px;
+    background: #ce4554;
+    left: 55%;
+    top: -25px;
+    transform: rotate(32deg);
+}
+
+.track-green {
+    width: 120%;
+    height: 15px;
+    background: #42a376;
+    top: 44%;
+    left: -10%;
+    transform: rotate(-12deg);
+}
+
+.track-blue {
+    width: 120%;
+    height: 15px;
+    background: #4596d2;
+    top: 56%;
+    left: -10%;
+    transform: rotate(-12deg);
+}
+
+.interchange {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    width: 70px;
+    height: 70px;
+    background: white;
+    border: 7px solid #142b3e;
+    border-radius: 50%;
+    font-size: 32px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.art-label {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    color: white;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.home-lines {
+    padding: 32px 0 48px;
+    border-top: 1px solid #dde2e6;
+}
+
+.home-lines h2 {
+    margin: 8px 0 26px;
+    font-size: 28px;
+    letter-spacing: -0.8px;
+}
+
+.line-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.route-card {
+    --line-color: #e8b63c;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 22px;
+    border: 1px solid #dde2e6;
+    border-top: 4px solid var(--line-color);
+    border-radius: 10px;
+    background: white;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.route-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px #1724330d;
+}
+
+.route-card.red {
+    --line-color: #b92c3d;
+}
+
+.route-card.green {
+    --line-color: #247249;
+}
+
+.route-card.blue {
+    --line-color: #1664a7;
+}
+
+.route-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #84909b;
+    font-size: 12px;
+}
+
+.route-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--line-color);
+}
+
+.route-card strong {
+    font-size: 23px;
+    letter-spacing: -0.5px;
+}
+
+.route-card > span:last-child {
+    font-size: 12px;
+    color: #697785;
+}
+
+.home-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 24px 0 12px;
+    border-top: 1px solid #dde2e6;
+    color: #697785;
+    font-size: 12px;
+}
+
+/* About */
+main:not(.home-main):not(:has(.station-sidebar)) > p {
+    max-width: 760px;
+    margin: 16px 0;
+    color: #566473;
+}
+
+main:not(.home-main):not(:has(.station-sidebar)) > h2 {
+    margin-top: 32px;
+    font-size: 26px;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
     header {
-        padding: 22px 16px;
+        padding: 20px;
     }
 
-    h1 {
-        font-size: 26px;
+    header h1 {
+        font-size: 22px;
     }
 
     main {
         padding: 24px 16px;
     }
 
-    main > div:first-child > button {
-        min-width: 0;
-        padding: 10px 16px;
+    main:has(.station-sidebar) {
+        display: block;
     }
 
-    main > div:last-child {
+    .station-sidebar {
+        margin-bottom: 24px;
+        max-height: 260px;
+        overflow-y: auto;
+    }
+
+    .home-hero {
         grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 30px 0 40px;
+    }
+
+    .home-hero h2 {
+        letter-spacing: -2px;
+    }
+
+    .route-art {
+        height: 240px;
     }
 
     .line-links {
-        flex-direction: column;
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .line-links a {
-        width: 100%;
+    .train-card {
+        padding: 16px;
+        gap: 12px;
     }
 
-    object {
-        height: 500px;
+    .train-symbol {
+        width: 36px;
+        height: 36px;
+        font-size: 23px;
+    }
+
+    .train-details h2 {
+        font-size: 18px;
+    }
+
+    .train-arrival strong {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 380px) {
+    .line-links {
+        grid-template-columns: 1fr;
+    }
+
+    .train-symbol {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+
+.train-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 8px;
+    border-bottom: 1px solid #333;
+    background: white;
+}
+
+.train-row:first-child {
+    border-top: 1px solid #333;
+}
+
+.train-letter {
+    font-family: Georgia, serif;
+    font-size: 40px;
+    line-height: 1;
+    color: black;
+}
+
+.train-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.train-info p {
+    margin: 2px 0;
+    font-size: 13px;
+}
+
+.train-time {
+    flex-shrink: 0;
+    width: 85px;
+    color: green;
+    font-size: 13px;
+    text-align: right;
+}
+
+@media (max-width: 600px) {
+    .train-row {
+        gap: 10px;
+    }
+
+    .train-info p {
+        font-size: 12px;
+    }
+
+    .train-time {
+        width: 65px;
+        font-size: 12px;
     }
 }

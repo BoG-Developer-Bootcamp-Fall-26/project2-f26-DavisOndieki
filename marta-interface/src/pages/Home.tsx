@@ -8,18 +8,29 @@ export default function Home() {
                 <Link to="/about">About MARTA</Link>
             </header>
 
-            <main>
-                <h2>Where are you headed?</h2>
-                <p>Select a line to view trains and arrival information.</p>
+            <main className="home-main">
+                <h2>Select a Line</h2>
 
                 <nav className="line-links">
-                    <Link to="/lines/gold">Gold Line</Link>
-                    {' | '}
-                    <Link to="/lines/red">Red Line</Link>
-                    {' | '}
-                    <Link to="/lines/green">Green Line</Link>
-                    {' | '}
-                    <Link to="/lines/blue">Blue Line</Link>
+                    <Link to="/lines/gold" className="route-card gold">
+                        <strong>Gold Line</strong>
+                        <span>View arrivals →</span>
+                    </Link>
+
+                    <Link to="/lines/red" className="route-card red">
+                        <strong>Red Line</strong>
+                        <span>View arrivals →</span>
+                    </Link>
+
+                    <Link to="/lines/green" className="route-card green">
+                        <strong>Green Line</strong>
+                        <span>View arrivals →</span>
+                    </Link>
+
+                    <Link to="/lines/blue" className="route-card blue">
+                        <strong>Blue Line</strong>
+                        <span>View arrivals →</span>
+                    </Link>
                 </nav>
             </main>
         </div>
